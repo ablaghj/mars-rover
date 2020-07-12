@@ -1,7 +1,8 @@
 package com.bnp.rover.objects;
 
 import com.bnp.rover.checkers.RoverChecker;
-import com.bnp.rover.enums.DirectionType;
+import com.bnp.rover.factory.Direction;
+import com.bnp.rover.factory.DirectionFactory;
 
 import java.util.Objects;
 
@@ -58,11 +59,15 @@ public class Rover {
     }
 
     public void turnLeft() {
-        this.setPosition(new Position(position.getX(), position.getY(), DirectionType.getNextLeftDirection(position.getDirection())));
+        DirectionFactory directionFactory = new DirectionFactory();
+        Direction direction = directionFactory.getDirection(DirectionFactory.TYPE_LEFT);
+        this.setPosition(new Position(position.getX(), position.getY(), direction.nextDirection(position.getDirection())));
     }
 
     public void turnRight() {
-        this.setPosition(new Position(position.getX(), position.getY(), DirectionType.getNextRightDirection(position.getDirection())));
+        DirectionFactory directionFactory = new DirectionFactory();
+        Direction direction = directionFactory.getDirection(DirectionFactory.TYPE_RIGHT);
+        this.setPosition(new Position(position.getX(), position.getY(), direction.nextDirection(position.getDirection())));
     }
 
     @Override

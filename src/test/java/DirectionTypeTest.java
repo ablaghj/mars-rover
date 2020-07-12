@@ -1,8 +1,12 @@
 import com.bnp.rover.enums.DirectionType;
+import com.bnp.rover.factory.Direction;
+import com.bnp.rover.factory.DirectionFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class DirectionTypeTest {
+
+    private static DirectionFactory directionFactory = new DirectionFactory();
 
     @Test
     public void testGetDirection() {
@@ -14,18 +18,20 @@ public class DirectionTypeTest {
 
     @Test
     public void testGetNextRightDirection() {
-        Assert.assertEquals(DirectionType.SOUTH, DirectionType.getNextRightDirection(DirectionType.EAST));
-        Assert.assertEquals(DirectionType.NORTH, DirectionType.getNextRightDirection(DirectionType.WEST));
-        Assert.assertEquals(DirectionType.EAST, DirectionType.getNextRightDirection(DirectionType.NORTH));
-        Assert.assertEquals(DirectionType.WEST, DirectionType.getNextRightDirection(DirectionType.SOUTH));
+        Direction direction = directionFactory.getDirection(DirectionFactory.TYPE_RIGHT);
+        Assert.assertEquals(DirectionType.SOUTH, direction.nextDirection(DirectionType.EAST));
+        Assert.assertEquals(DirectionType.NORTH, direction.nextDirection(DirectionType.WEST));
+        Assert.assertEquals(DirectionType.EAST, direction.nextDirection(DirectionType.NORTH));
+        Assert.assertEquals(DirectionType.WEST, direction.nextDirection(DirectionType.SOUTH));
     }
 
     @Test
     public void testGetNextLeftDirection() {
-        Assert.assertEquals(DirectionType.NORTH, DirectionType.getNextLeftDirection(DirectionType.EAST));
-        Assert.assertEquals(DirectionType.SOUTH, DirectionType.getNextLeftDirection(DirectionType.WEST));
-        Assert.assertEquals(DirectionType.WEST, DirectionType.getNextLeftDirection(DirectionType.NORTH));
-        Assert.assertEquals(DirectionType.EAST, DirectionType.getNextLeftDirection(DirectionType.SOUTH));
+        Direction direction = directionFactory.getDirection(DirectionFactory.TYPE_LEFT);
+        Assert.assertEquals(DirectionType.NORTH, direction.nextDirection(DirectionType.EAST));
+        Assert.assertEquals(DirectionType.SOUTH, direction.nextDirection(DirectionType.WEST));
+        Assert.assertEquals(DirectionType.WEST, direction.nextDirection(DirectionType.NORTH));
+        Assert.assertEquals(DirectionType.EAST, direction.nextDirection(DirectionType.SOUTH));
     }
 
 }

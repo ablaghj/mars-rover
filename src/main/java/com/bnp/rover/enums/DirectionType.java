@@ -28,46 +28,6 @@ public enum DirectionType{
         throw new EnumConstantNotPresentException(DirectionType.class, strSearch);
     }
 
-    /**
-     * Method to get the next right direction of the rover
-     * @param currentDirection
-     * @return directionType
-     */
-    public static DirectionType getNextRightDirection(DirectionType currentDirection){
-       switch (currentDirection){
-           case EAST:
-               return SOUTH;
-           case WEST:
-               return NORTH;
-           case NORTH:
-               return EAST;
-           case SOUTH:
-               return WEST;
-           default:
-               throw new EnumConstantNotPresentException(DirectionType.class, currentDirection.toString());
-       }
-    }
-
-    /**
-     * Method to get the next left direction of the rover
-     * @param currentDirection
-     * @return directionType
-     */
-    public static DirectionType getNextLeftDirection(DirectionType currentDirection){
-        switch (currentDirection){
-            case EAST:
-                return NORTH;
-            case WEST:
-                return SOUTH;
-            case NORTH:
-                return WEST;
-            case SOUTH:
-                return EAST;
-            default:
-                throw new EnumConstantNotPresentException(DirectionType.class, currentDirection.toString());
-        }
-    }
-
     @Override
     public String toString() {
         return directionValue;
